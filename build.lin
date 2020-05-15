@@ -1,23 +1,23 @@
 g++ -Wall -W -c -O3 src_c/alyapustin_IPC/humlicek.cpp
 g++ -Wall -W -c -O3 src_c/alyapustin_IPC/cmplx.cpp
-g++ -Wall -W -c -O3 src_c/cabs.cpp
 g++ -Wall -W -c -O3 src_c/count_lines.cpp
 g++ -Wall -W -c -O3 src_c/hisotops.cpp
 g++ -Wall -W -c -O3 src_c/intparab.cpp
 g++ -Wall -W -c -O3 src_c/ix1ix2.cpp
 g++ -Wall -W -c -O3 src_c/kabs.cpp
+g++ -Wall -W -c -O3 src_c/kcon.cpp
 g++ -Wall -W -c -O3 src_c/read_hitran160.cpp
 g++ -Wall -W -c -O3 src_c/simpson.cpp
 g++ -Wall -W -c -O3 src_c/tauabs25.cpp
 g++ -Wall -W -O3 src_c/main_tau_abs_hprofile.cpp \
 humlicek.o \
 cmplx.o \
-cabs.o \
 count_lines.o \
 hisotops.o \
 intparab.o \
 ix1ix2.o \
 kabs.o \
+kcon.o \
 read_hitran160.o \
 simpson.o \
 tauabs25.o \
