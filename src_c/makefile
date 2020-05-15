@@ -14,16 +14,16 @@ CC = g++
 
 COMPILEFLAGS = -Wall -W -O3
 
-CPPSRC = cabs.cpp \
-         count_lines.cpp \
-         hisotops.cpp \
-         intparab.cpp \
-         ix1ix2.cpp \
-         kabs.cpp \
-         read_hitran160.cpp \
-         simpson.cpp \
-         tauabs25.cpp \
-         main_tau_abs_hprofile.cpp
+CPPSRC = count_lines.cpp \
+hisotops.cpp \
+intparab.cpp \
+ix1ix2.cpp \
+kabs.cpp \
+kcon.cpp \
+read_hitran160.cpp \
+simpson.cpp \
+tauabs25.cpp \
+main_tau_abs_hprofile.cpp
 
 OFILES = humlicek.o cmplx.o ${CPPSRC:.cpp=.o}
 
