@@ -23,7 +23,6 @@ NOTE:
 	rule, with basically no additional computational cost" [3].
 
 	In case EVEN nx, first or last interval is added using e.g. trapz [4].
-
 REFS:
 	1.https://en.wikipedia.org/wiki/Simpson%27s_rule
 	2.Lyapustin A, 2003: J. Atmospheric. Sci, 60, 865

@@ -1,28 +1,29 @@
 #include <cstring>       /* strcpy, strcat */
-#include <stdio.h>       /* FILE */
+#include <stdio.h>       /* FILE, fopen, printf, fscanf, EOF, fclose */
 #include <stdlib.h>      /* atof */
-#include "const_param.h" /* char path_hitdb[], char fname_hitdb[], int path_len_max */
-//
+#include "const_param.h" /* int path_len_max, char path_hitdb[], char fname_hitdb[] */
+/*
+prototype:
+    void count_lines(int, double, double, int &, int &);
+*/
 void count_lines(int const molec_id, double const nu_min, double const nu_max, // in
 	             int &iline0, int &nlines) {                                   // out
 /*--------------------------------------------------------------------------------------------------
-PURPOSE:
+TASK:
 	To find the number of lines, nlines, in [nu_min:nu_max] and index of the first line in the
 	interval, iline0.
-INPUT:
+IN:
 	molec_id   i   as defiend in HITRAN
 	nu_min     d   wavenumber interval lower boundary
 	nu_max     d   wavenumber interval upper boundary
-OUTPUT:
+OUT:
 	iline0     i   index of the first line in the interval: iline=-1 by default
 	nlines     i   number of lines in the interval: nlines=0 by default
-COMMENT:
+NOTE:
 	The subroutine assumes the par-file exisits and is not empty.
 	iline0 = 0 corresponds to the top line in the HITRAN database file.
-REFERENCESS:
+REFS:
 	-
-PROTOTYPE:
-	void count_lines(int, double, double, int &, int &);
 --------------------------------------------------------------------------------------------------*/
 	FILE *fin;
 	char
@@ -89,6 +90,8 @@ PROTOTYPE:
 	printf("\n(in count_lines.cpp) closed: %s", fpath);
 } // count_lines
 /*--------------------------------------------------------------------------------------------------
+2020-05-15:
+    minor changes in comments;
 2020-04-11: 'delta_nu' removed from the subroutine (it was included twice: in the calling program &
             in this code). Now the subroutine simply counts lines within [nu_min:nu_max] as defined
 			on input. Visually tested using O2 within 13012.0(-25.0):13022.0(+25.0) - ok.

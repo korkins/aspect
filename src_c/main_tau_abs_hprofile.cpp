@@ -19,11 +19,10 @@ void kabs(int const,
 	      int const, int *, double *, double *, double *,
 	                        double *, double *, double *, double *,
 	      double *);
-void cabs(int const, double const *, int const,
+void kcon(int const, double const *, int const,
 	      double const *, double const *, double const *,
 	      int const, double *);
 void tauabs25(double const *, double const *, double const *, int const, double *);
-//
 /*
 http://modtran.spectral.com/modtran_faq
 */
@@ -41,14 +40,12 @@ int main()
 	int
 		*isotop_id;
 	double
-		*Patm, *Tkelv, *conc_cm3, *ppmv, *Pgas;
+		*Patm, *Tkelv, *conc_cm3, *Pgas;
 	double
-		*nuij, *Sij, *gamma_air, *gamma_self, *Epp, *n_air, *delta_air, *nu,
-		Qratio[niso_max*nz_mod], mmass_iso[niso_max], Ia_iso[niso_max], *knu, *gas_ratio, *ext_km,
-		*tau_abs, *ztau, *conc_all, *kcont, *atmcm_km;
+		*nuij, *Sij, *gamma_air, *gamma_self, *Epp, *n_air, *delta_air, *nu, *knu, *gas_ratio,
+		*ext_km, *tau_abs, *ztau, *conc_all, *kcont, *atmcm_km;
 	char
-		txt_ext[5] = ".txt",
-		fname_out[fname_len_max] = "tau_abs_hprofile.txt";
+		fname_out[fname_len_max];
 /*------------------------------------------------------------------------------------------------*/
 //
 //  Input:
@@ -57,13 +54,11 @@ int main()
 	column_amount_usr = -1.0; // for standard amount use column_amount < 0
 	nu_usr_min = 10000.0/0.770;
 	nu_usr_max = 10000.0/0.760;
-	dnu = 0.05; 1.0/100;
+	dnu = 0.01;
 	ntau = 5;
 	tau_abs = new double [ntau];
 	ztau = new double [ntau];
 	ztau[0] = 0.0; ztau[1] = 2.0; ztau[2] = 5.0; ztau[3] = 10.0; ztau[ntau-1] = 20.0;
-	//ztau[0] = 0.0; ztau[1] = 12.0; ztau[2] = 24.0;
-	//ztau[0] = 0.0;
 /*------------------------------------------------------------------------------------------------*/
 //
 	time_start = (double)clock() /(double)CLOCKS_PER_SEC;
@@ -81,7 +76,7 @@ int main()
 	strcat(fname_out, ".txt");
 //
 //  User-defined spectral grid, nu, and spectral absorption coefficient, k_abs
-	nnu = ceil((nu_usr_max - nu_usr_min)/dnu);
+	nnu = int(ceil((nu_usr_max - nu_usr_min)/dnu));
 	nu = new double [nnu];
 	for (inu = 0; inu < nnu; inu++)
 		nu[inu] = nu_usr_min + inu*dnu;
@@ -268,7 +263,7 @@ int main()
 		kcont = new double [nnu*nz_mod];
 		for (ik = 0; ik < nnu*nz_mod; ik++) kcont[ik] = 0.0;
 	    t1_sec = (double)clock() /(double)CLOCKS_PER_SEC;
-	    cabs(molec_id, nu, nnu, Tkelv, Patm, conc_cm3, nz_mod, kcont);
+	    kcon(molec_id, nu, nnu, Tkelv, Patm, conc_cm3, nz_mod, kcont);
 	    t2_sec = (double)clock() /(double)CLOCKS_PER_SEC;
 	    printf("\n runtime for 'cabs': %6.2fs", t2_sec - t1_sec);
 //		for (ik = 0; ik < nnu*nz_mod; ik++) knu[ik] = kcont[ik]; // ONLY continuum

@@ -3,7 +3,7 @@
 #include <stdlib.h>      /* atof */
 #include "const_param.h" /* char path_hitdb[], char fname_hitdb[], int path_len_max */
 /*
-protitype:
+prototype:
 	void read_hitran160(int, int, int,
 							int *, double *, double *, double *,
 								double *, double *, double *, double *);
@@ -28,6 +28,7 @@ OUT:
 	n_air        d[nlines]   [X]:                 Temperature exponent for the air-broadened HWHM
 	delta_air    d[nlines]   [cm-1.atm-1]:        Pressure shift induced by air, referred to p=1 atm
 NOTE:
+    HITRAN line intensity, Sij, already accounts for terrestrial abundance.
     HWHM = 'half-width at half-maximum'
 	i) The subroutine ASSUMES the HITRAN database file exisits and is not empty.
 	   iline=0 corresponds to the top line in the HITRAN database file.
@@ -102,6 +103,8 @@ REFS:
 } // read_hitran160
 //--------------------------------------------------------------------------------------------------
 /*
+2020-05-15:
+    minor changes in comments;
 2020-01-13: Aij, gp, gpp are removed from output (not used); code modified: str_skip -> str_tail...
 			Checked vs original version.
 		

@@ -5,7 +5,6 @@
 	fpar_len_str = 160+2,
 	niso_max = 12;
 double const
-	//dbl_fill_value = -999.0,
 	tiny_double = 1.0e-12,
 	pi = 3.1415926535897932384626433832795,
 	sqrt_pi = 1.772453850905516027298167483,
@@ -35,17 +34,6 @@ char const fname_hitdb[nmolec_id][fname_len_max] = {"01_hitdb.par", "02_hitdb.pa
                                                     "05_hitdb.par", "06_hitdb.par", "07_hitdb.par",
                                                     "nill", "nill",
                                                     "10_hitdb.par"};
-// Band-pass filter
-char const path_bpf[path_len_max] = "C:\\CODES\\spectroscopy\\bandpass_filter\\";
-char const fname_bpf[fname_len_max] = "BPF_DAGR_1.6um_SK.dat";
-//
-// Solar spectrum
-char const path_source[path_len_max] = "C:\\CODES\\spectroscopy\\light_source_spectrum\\";
-char const fname_source[fname_len_max] = "00_S0chkur.db";
-//
-// Band-pass filter
-char const path_tau[path_len_max] = "C:\\CODES\\spectroscopy\\tau_abs\\";
-char const fname_tau[fname_len_max] = "tau_abs_ch4.txt";
 //
 // ISOTOPS: *** update hisotops.cpp & isotops.cpp accordingly! ***
 char const path_TIPS[path_len_max] = "./hitran/TIPS/";
@@ -113,7 +101,6 @@ double const
 	Qref_o2[niso_o2] = {215.73450400, 455.22995200, 2658.12071500},
     molar_mass_o2[niso_o2] = {31.989830, 33.994076, 32.994045},
 	Ia_iso_o2[niso_o2] = {9.95262e-1, 3.99141e-3, 7.42235e-4};
-    //Ia_iso_o2[niso_o2] = {9.95262e-1, 9.95262e-1, 7.42235e-4};
 //
 // (10) NO2:
 int const niso_no2 = 1;

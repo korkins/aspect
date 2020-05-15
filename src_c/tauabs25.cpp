@@ -8,10 +8,10 @@ double intparab(double const, double const, double const, double const, double c
 prototype:
     void tauabs25(double const *, double const *, double const *, int const, double *);
 */
-void tauabs25(double const *ext_km, double const *zkm_mod, double const *ztau, int const ntau,
-			  double *tau) {
+void tauabs25(double const *ext_km, double const *zkm_mod, double const *ztau, int const ntau, // in
+			  double *tau) {                                                                   // out
 /*--------------------------------------------------------------------------------------------------
-PURPOSE:
+TASK:
 	To integrate exteinction height profile from ztau < 25km to TOA and get tau_absorption
 IN:
 	ext_km   d[nz_mod]   extinction profile, 1/km, for MODTRAN atmosphere
@@ -53,8 +53,10 @@ REFS:
 	} // for iz=0:ntau
 } // tauabs25
 /*--------------------------------------------------------------------------------------------------
+2020-05-15:
+    minor changes in comments;
 2020-02-25:
-    replaced: intexp(&ext_km[35], &zkm_mod[35], 15) -> simpson(&ext_km[35], 15, 5.0) due to intexp
+    replaced: intexp(&ext_km[35], &zkm_mod[35], 15) -> simpson(&ext_km[35], 15, 5.0) due to 'intexp'
 	does not work for ext_km = const = 0.0 (no absorption)
 2020-02-09:
 	First created. Selection of the correct bin & integration interval tested for: ntau = 10,

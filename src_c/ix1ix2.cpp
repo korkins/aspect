@@ -2,7 +2,8 @@
 prototype:
     int ix1ix2(double const, double const, double const *, int const, int &, int &);
 */
-int ix1ix2(double const x0, double const dx, double const *x, int const nx, int &ix1, int &ix2) {
+int ix1ix2(double const x0, double const dx, double const *x, int const nx, // in
+	       int &ix1, int &ix2) {                                            // out
 /*--------------------------------------------------------------------------------------------------
 TASK:
 	To get boundary indices for elements of an array, x, that fall within +/- dx from a value x0.
@@ -11,12 +12,12 @@ TASK:
 IN:
 	x0   d       central point of interval [x0-dx, x0+dx]
 	dx   d       half-width of the interval, dx > 0.0
-	x    d[nx]   arrayof elements in ascending order
+	x    d[nx]   array of elements in ascending order
 	nx   i       length of x
 OUT:
 	ix1, ix2   i   zero-offset left and right boundaries, respectively
 NOTE:
-	ix1=ix2=code=-1 are returned if no boundaries found.
+	ix1 = ix2 = code = -1 are returned if no boundaries found.
 	ix1 & ix2 are zero-offset (ready to use for C-arrays)
 	ix1 = ix2 is allowed (only one value from 'x' is covered by x0+/-dx)
 REFS:
@@ -63,6 +64,8 @@ REFS:
 	return(code);
 } // inu1inu2
 /*--------------------------------------------------------------------------------------------------
+2020-05-15:
+    minor changes in comments;
 2020-01-08:
 	First created and tested using nx=101, x=[0:1:100], x[ix]=1.0*ix
 		Test 1 (no overlap):

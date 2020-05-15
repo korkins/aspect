@@ -1,7 +1,9 @@
 #include <cstring>       /* strcpy, strcat */
-#include <stdio.h>       /* FILE */
+#include <stdio.h>       /* FILE, printf, fopen, fscanf, fclose */
 #include <math.h>        /* floor */
-#include "const_param.h" /* char path_tips[], char fname_hitdb[], int path_len_max, int fname_len_max */
+#include "const_param.h" /* char path_tips[], char fname_hitdb[], char path_TIPS[], int path_len_max,
+//                          int fname_len_max, niso_max, niso_MOL, Qref_MOL, molar_mass_MOL,
+//                          Ia_iso_MOL <- not used for Earth */
 /*
 prototype:
 	int hisotops(int const, double const *, int const,
@@ -19,12 +21,13 @@ IN:
 	Tz         d[nz]   temperature, [K]
 	nz         i       number of heights, nz = len(T_kelvin)
 OUT:
-	niso        i             number of isotops
+	niso        i                number of isotops
 	Qratio      d[nz*niso_max]   Q(296K)/Q(T): *** WARNING: Tref/Tuser - not vice versa! ***
 	                             nz is the lead dimension;
-	mmass_iso   d[niso_max]   molar mass of isotops [g/mol]
-	Ia_iso      d[niso_max]   natural terrestrial isotopic abundances
+	mmass_iso   d[niso_max]      molar mass of isotops [g/mol]
+	Ia_iso      d[niso_max]      natural terrestrial isotopic abundances
 NOTE:
+    In terrestrial atmosphere, Ia_iso is already included in hitran's Sij.
     For output arrays,  only first 'niso' values are used.
 	Q(T) is linear intepolated, LUT step over temperature = 1 Kelvin.
 	Q(296K) comes from [1], not from [2] (less digits).
@@ -152,7 +155,7 @@ REFS:
 		for (iline = 1; iline < nlines; iline++) fscanf(fin, "%lf %lf", &Tq[iline], &Qt[iline]);
 		for (iz = 0; iz < nz; iz++)
 		{
-			ibin = floor((Tz[iz] - To)/dTkelv); // floor returns double ??
+			ibin = int(floor((Tz[iz] - To)/dTkelv)); // attn: floor returns double
 			Qo = Qt[ibin] + (Tz[iz] - Tq[ibin])*(Qt[ibin+1] - Qt[ibin])/(Tq[ibin+1] - Tq[ibin]);
 			Qratio[iso*nz+iz] = Qref[iso]/Qo;
 		} // for iz = 0:nz
@@ -163,6 +166,10 @@ REFS:
 	return(niso);
 } // hisotops
 /*--------------------------------------------------------------------------------------------------
+2020-05-15:
+    minor changes in comments;
+2020-05-08:
+    ibin = int(floor((Tz[iz] - To)/dTkelv)); note: int()
 2020-02-12:
 	H2O added, tested with main program with modtran profiles
 2020-02-05:
