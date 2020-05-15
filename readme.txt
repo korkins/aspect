@@ -12,13 +12,13 @@ MAKE
 
 OR BUILD (if 'make' does not work)
 
--run .\build.lin  (make shure it is executable)
--run .\aspect.exe (make shure it is executable)
+-run ./build.lin  (make shure it is executable)
+-run ./aspect.exe (make shure it is executable)
 
 
 AND TEST
 
--run diff O2.txt AO2_H16_check.txt.txt
+-run diff O2.txt test-O2.txt
 
 
 HOW TO TRY DIFFERENT HITRAN
